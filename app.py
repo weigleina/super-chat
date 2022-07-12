@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from templates.wtform_fields import *
+from wtform_fields import *
 
 import psycopg2
 
