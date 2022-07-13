@@ -7,6 +7,14 @@
     <title>{% block title %}{% endblock %} - Super Chat</title>
   </head>
   <body>
-    {% block content %} {% endblock %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}  
+        Category: {{ messages[0][0] }}
+        {{ messages[0][1] }}
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}
+    {% endblock %}
   </body>
 </html>
