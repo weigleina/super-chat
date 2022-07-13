@@ -1,6 +1,7 @@
 from flask import Flask, redirect, render_template, url_for
 from wtform_fields import *
 from models import *
+
 import psycopg2
 
 
@@ -16,14 +17,20 @@ db = SQLAlchemy(app)
 def index():
   reg_form = RegistrationForm()
 
+  # update database if validation success
   if reg_form.validate_on_submit():
     username = reg_form.username.data
     password = reg_form.password.data
 
+    # hash password
+    hashed_password = pbkdf2_sha256.hash(password)
+    
     # add user to db
-    user = User(username = username, password = password)
+    user = User(username = username, password = hashed_password)
     db.session.add(user)
     db.session.commit()
+
+    # re-route to login
     return redirect(url_for('login'))
 
   return render_template('index.html', form = reg_form)
