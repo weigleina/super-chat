@@ -4,16 +4,16 @@
 {% block title %}Pre-Login{% endblock %}
 
 {%block content %}
-<h1>Super Chat</h1>
+  <h1>Super Chat</h1>
 
-<form action="{{ url_for('index') }}", method="POST">
+  <form action="{{ url_for('index') }}", method="POST">
 
-  {{ displayField(form.username, 'Username', autocomplete="off", autofocus=true) }}
-  {{ displayField(form.password, 'Password') }}
-  {{ displayField(form.confirm_password, 'Confirm Password') }}
+    {{ displayField(form.username, 'Username', autocomplete="off", autofocus=true) }}
+    {{ displayField(form.password, 'Password') }}
+    {{ displayField(form.confirm_password, 'Confirm Password') }}
 
-  <div>{{ form.submit_button }}</div>
-  {{ form.csrf_token }}
-</form>
+    <div>{{ form.submit_button }}</div>
+    {{ form.csrf_token }}
+  </form>
 
 {% endblock %}
